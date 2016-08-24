@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import os
 import time
 from slackclient import SlackClient
@@ -29,7 +31,7 @@ def handle_command(command, channel):
     response = "Not sure what you mean. Use the *" + EXAMPLE_COMMAND + \
                "* command with numbers, delimited by spaces."
     if command.startswith(EXAMPLE_COMMAND):
-        response = "@thecaptain"
+        response = "Please stop telling me to 'do the thing'."
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
