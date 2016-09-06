@@ -1,4 +1,7 @@
 #! /usr/bin/env python3
+'''
+JARVIS  (Just Another Robot Visitor In Slack)
+'''
 
 import os
 import time
@@ -28,7 +31,7 @@ def handle_command(command, channel):
                "* command with numbers, delimited by spaces."
     if command.startswith(DO_COM):
         response = "Please stop telling me to 'do the thing'."
-        
+
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
@@ -51,7 +54,7 @@ def parse_slack_output(slack_rtm_output):
 if __name__ == "__main__":
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     if slack_client.rtm_connect():
-        print("StarterBot connected and running!")
+        print("JARVIS is online...")
         while True:
             command, channel = parse_slack_output(slack_client.rtm_read())
             if command and channel:
