@@ -19,6 +19,7 @@ BOT_ID = os.environ.get("BOT_ID")
 # constants
 AT_BOT = "<@" + BOT_ID + ">"
 DO_COM = "do"
+HELP_COM = '-h'
 
 
 def handle_command(command, channel):
@@ -27,10 +28,11 @@ def handle_command(command, channel):
         are valid commands. If so, then acts on the commands. If not,
         returns back what it needs for clarification.
     """
-    response = "Not sure what you mean. Use the *" + DO_COM + \
-               "* command with numbers, delimited by spaces."
+    response = "Not sure what you mean. Can you clarify?"
     if command.startswith(DO_COM):
         response = "Please stop telling me to 'do the thing'."
+    if command.startswith(HELP_COM): 
+    	response = "Holds the help documentation."
 
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
