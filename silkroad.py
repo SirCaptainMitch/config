@@ -20,6 +20,7 @@ BOT_ID = os.environ.get("BOT_ID")
 AT_BOT = "<@" + BOT_ID + ">"
 DO_COM = "do"
 HELP_COM = '-h'
+BURN_COM = '-b'
 
 
 def handle_command(command, channel):
@@ -33,6 +34,8 @@ def handle_command(command, channel):
         response = "Please stop telling me to 'do the thing'."
     if command.startswith(HELP_COM): 
     	response = "Holds the help documentation."
+    if command.startswith(BURN_COM): 
+        response = "Here is a list of burn centers that you may consult: \n https://en.wikipedia.org/wiki/List_of_burn_centers_in_the_United_States."
 
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
